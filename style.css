@@ -70,3 +70,11 @@ body{
     color:red;
     font-size:14px;
 }
+.login-box {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.login-box.active {
+    opacity: 1;
+}
