@@ -1,29 +1,24 @@
-let tapCount = 0;
-let timer;
+let lastTap = 0;
 
 const lamp = document.getElementById("lamp");
 const loginBox = document.getElementById("loginBox");
 
-lamp.addEventListener("click", function() {
-    tapCount++;
+lamp.addEventListener("click", function () {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
 
-    if(tapCount === 1){
-        timer = setTimeout(() => {
-            tapCount = 0;
-        }, 300);
-    } else if(tapCount === 2){
-        clearTimeout(timer);
-        tapCount = 0;
+    if (tapLength < 400 && tapLength > 0) {
         openLogin();
     }
+
+    lastTap = currentTime;
 });
 
-function openLogin(){
+function openLogin() {
     loginBox.classList.add("active");
 }
 
-function login(){
-
+function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const error = document.getElementById("error");
@@ -31,7 +26,7 @@ function login(){
     const correctUser = "dharun";
     const correctPass = "1234";
 
-    if(username === correctUser && password === correctPass){
+    if (username === correctUser && password === correctPass) {
         window.location.href = "https://dharunkumar0510.github.io/dharun_portfolio/";
     } else {
         error.innerText = "Invalid Credentials!";
